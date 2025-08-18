@@ -1,5 +1,3 @@
-package project_2;
-
 // 게임 내 등장하는 모든 아이템
 
 public class Item {
@@ -26,4 +24,3 @@ public class Item {
     }
 
 }
-

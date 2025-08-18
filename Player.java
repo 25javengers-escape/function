@@ -1,7 +1,5 @@
-package project_2;
-
 import Room; //수정
-import project_2.Item;
+import Item;
 import Puzzle; //수정
 
 //플레이어의 상태 추적, 아이템 사용 행위 제어
@@ -52,3 +50,4 @@ public class Player {
         return dead;
     }
 }
+

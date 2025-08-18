@@ -26,4 +26,3 @@ public class Room {
         this.nextRoom = nextRoom;
     }
 }
-

@@ -5,11 +5,10 @@ public class BaseBallGame {
     private int[] secretNumber = new int[4];
 
     private void generateSecretNumber() {
-        List<Integer> numbers = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(0,8,1,5));
+        for (int i = 0; i < 4; i++) {
             numbers.add(i);
         }
-        Collections.shuffle(numbers);
 
         for (int i = 0; i < 4; i++) {
             secretNumber[i] = numbers.get(i);
@@ -17,10 +16,10 @@ public class BaseBallGame {
     }
 
     public boolean playBaseBallGame(Scanner scanner) {
-        System.out.println("\n현관문에 도착했습니다!");
+        //System.out.println("\n[5단계] 당신은 현관문에 도착했습니다!");
         System.out.println("디지털 자물쇠에는 4자리 숫자를 입력해야 합니다.");
-        System.out.println("숫자야구 게임으로 비밀번호를 맞춰보세요!");
-        System.out.println("(0~9 숫자 4개, 중복 없음)");
+        System.out.println("숫자 야구 게임으로 비밀번호를 맞춰보세요!");
+        System.out.println("*0~9 숫자 4개, 중복 없음");
         System.out.println();
 
         generateSecretNumber();
@@ -93,10 +92,11 @@ public class BaseBallGame {
 
             if (attempts >= maxAttempts) {
                 System.out.println("\n시간이 너무 오래 걸렸습니다...");
-                System.out.println("살인자가 현관에 도착했습니다!");
+                System.out.println("살인자가 현관문 앞에 도착했습니다!");
                 return false;
             }
         }
         return false;
     }
+
 }

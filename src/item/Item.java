@@ -2,7 +2,7 @@ package item;
 
 public class Item {
     private String[] tools = {"가위", "나이프", "톱", "망치"};
-    private String[] keys = {"1번 열쇠", "2번 열쇠", "3번 열쇠", "4번 열쇠"};
+    private String[] keys = {"1번 열쇠", "2번 열쇠", "3번 열쇠"};
     private String correctTool = "가위";
     private String correctKey = "3번 열쇠";
 

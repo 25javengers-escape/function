@@ -4,13 +4,19 @@ import inventory.Inventory;
 import item.Item;
 
 public class Player {
+    private String name; //수정한 부분
     private Room currentRoom;
     private boolean dead = false;
     private Inventory inventory;
 
-    public Player(Room startingRoom) {
+    public Player(String name, Room startingRoom) { //수정한 부분
+        this.name=name;
         this.currentRoom = startingRoom;
         this.inventory = new Inventory();
+    }
+
+    public String getName(){ //수정한 부분
+        return name;
     }
 
     public Room getCurrentRoom() {

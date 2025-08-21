@@ -1,53 +1,96 @@
-import Room; //수정
-import Item;
-import Puzzle; //수정
-
-//플레이어의 상태 추적, 아이템 사용 행위 제어
+package player;
+import room.Room;
+import inventory.Inventory;
+import item.Item;
 
 public class Player {
-    private Room currentRoom; // 현재 방
-    private boolean dead=false; // 사망 여부
+    private String name; //수정한 부분
+    private Room currentRoom;
+    private boolean dead = false;
+    private Inventory inventory;
 
-    //시작 방 설정
-    public Player(Room startingRoom) {
+    public Player(String name, Room startingRoom) { //수정한 부분
+        this.name=name;
         this.currentRoom = startingRoom;
+        this.inventory = new Inventory();
     }
 
-    //현재 방 반환
+    public String getName(){ //수정한 부분
+        return name;
+    }
+
     public Room getCurrentRoom() {
         return currentRoom;
     }
 
-    //방 이동
     public void moveTo(Room nextRoom) {
         if (nextRoom != null) {
             this.currentRoom = nextRoom;
+            System.out.println(nextRoom.getName() + "으(로) 이동했습니다.");
         }
     }
 
-    //도구 사용
     public boolean useTool(String tool, Item itemChecker) {
-        return itemChecker.isCorrectTools(tool);
+        if (inventory.hasItem(tool)) {
+            boolean success = itemChecker.isCorrectTool(tool);
+            if (success) {
+                System.out.println(tool + "을(를) 성공적으로 사용했습니다!");
+                inventory.removeItem(tool);
+            } else {
+                System.out.println(tool + "은(는) 효과가 없습니다... 살인자가 다가옵니다!");
+                this.die();
+            }
+            return success;
+        } else {
+            System.out.println(tool + "을(를) 가지고 있지 않습니다.");
+            return false;
+        }
     }
 
-    //키 사용 
+    public boolean useToolWithDeath(String tool, Item itemChecker) {
+        if (inventory.hasItem(tool)) {
+            boolean success = itemChecker.isCorrectTool(tool);
+            if (success) {
+                System.out.println(tool + "을(를) 성공적으로 사용했습니다!");
+                inventory.removeItem(tool);
+            } else {
+                System.out.println(tool + "은(는) 효과가 없습니다... 살인자가 다가옵니다!");
+                this.die();
+            }
+            return success;
+        } else {
+            System.out.println(tool + "을(를) 가지고 있지 않습니다.");
+            return false;
+        }
+    }
+
     public boolean useKey(String key, Item itemChecker) {
-        return itemChecker.isCorrectKeys(key);
+        if (inventory.hasItem(key)) {
+            boolean success = itemChecker.isCorrectKey(key);
+            if (success) {
+                System.out.println(key + "로 문이 열렸습니다!");
+                inventory.removeItem(key);
+            } else {
+                System.out.println(key + "는 맞지 않습니다...");
+            }
+            return success;
+        } else {
+            System.out.println(key + "를 가지고 있지 않습니다.");
+            return false;
+        }
     }
 
-    //퍼즐 풀기
-    public boolean solvePuzzle(Puzzle puzzle) {
-        //return puzzle.메서드(); //수정
+    public Inventory getInventory() {
+        return inventory;
     }
 
-    //사용자 사망 처리
     public void die() {
         dead = true;
+        System.out.println("\n*** 게임 오버 ***");
+        System.out.println("살인자에게 발각되어 죽었습니다...");
     }
 
-    //사용자 사망 여부 확인
     public boolean isDead() {
         return dead;
     }
 }
-

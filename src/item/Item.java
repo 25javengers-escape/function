@@ -1,0 +1,31 @@
+package item;
+
+public class Item {
+    private String[] tools = {"주사기", "가위", "나이프", "망치"};
+    private String[] keys = {"보안카드 A", "보안카드 B", "보안카드 C"};
+    private String correctTool = "망치";
+    private String correctKey = "C";
+
+    public boolean isCorrectTool(String tool) {
+        return tool.equals(correctTool);
+    }
+
+    public boolean isCorrectKey(String key) {
+        return key.equals(correctKey);
+    }
+
+    public String[] getTools() {
+        return tools.clone();
+    }
+
+    public String[] getKeys() {
+        return keys.clone();
+    }
+
+    public void showTools() {
+        System.out.println("사용할 수 있는 도구들:");
+        for (int i = 0; i < tools.length; i++) {
+            System.out.println((i + 1) + ". " + tools[i]);
+        }
+    }
+}
